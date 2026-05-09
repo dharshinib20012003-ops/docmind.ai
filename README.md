@@ -1,110 +1,180 @@
-DocuMind - RAG Based Document Question Answering System
+# DocuMind AI – RAG-Based Document Question Answering System
 
+## 🚀 Overview
 
+DocuMind AI is an end-to-end **Retrieval-Augmented Generation (RAG)** system that enables users to extract insights from PDF documents using natural language queries.
 
-Overview
+Instead of manually reading long documents, users can ask questions and receive context-aware answers generated from the document content.
 
-DocuMind is a Retrieval-Augmented Generation (RAG) system that enables users to query information from PDF documents.
+---
 
-Instead of manually reading large documents, users can ask natural language questions and receive relevant answers.
+## 🎯 Problem Statement
 
+Large documents such as invoices, reports, and manuals are difficult to navigate manually.
+Traditional keyword search fails to capture semantic meaning.
 
+**Goal:** Build a system that understands documents and answers user queries intelligently.
 
-Problem Statement
+---
 
-Organizations deal with large volumes of documents (invoices, reports, manuals).
+## 🧠 System Architecture
 
-Manual searching is inefficient.
+```
+                User Query
+                     │
+                     ▼
+           Query Embedding Generation
+                     │
+                     ▼
+        FAISS Vector Database (Embeddings)
+                     │
+                     ▼
+         Retrieve Relevant Chunks
+                     │
+                     ▼
+     Context + User Query Formation
+                     │
+                     ▼
+        Local Language Model (HF)
+                     │
+                     ▼
+               Final Answer
+```
 
+---
 
+## ⚙️ How It Works (Step-by-Step)
 
-Solution:
+### 1. Document Ingestion
 
-\- Ingest documents
+* PDFs loaded using `PyPDFLoader`
+* Extracts raw text data
 
-\- Process and index data
+### 2. Text Chunking
 
-\- Retrieve relevant content
+* Splits large text into smaller chunks
+* Uses `RecursiveCharacterTextSplitter`
+* Improves retrieval accuracy
 
-\- Answer queries
+### 3. Embedding Generation
 
+* Converts text chunks into vectors
+* Uses HuggingFace embeddings
+* Enables semantic search
 
+### 4. Vector Storage
 
-Architecture (Block Diagram)
+* Stores embeddings in FAISS
+* Fast similarity search
 
+### 5. Retrieval
 
+* User query converted to embedding
+* Top relevant chunks retrieved
 
-User Query
+### 6. Answer Generation
 
-&#x20;  ↓
+* Context + query passed to local model
+* Generates final response
 
-Query Processing
+---
 
-&#x20;  ↓
+## 🔄 Data Flow
 
-FAISS Vector DB (stores embeddings)
+```
+PDF → Text Extraction → Chunking → Embeddings → FAISS
+                                             ↓
+User Query → Embedding → Similarity Search → Context
+                                             ↓
+                               Model → Answer
+```
 
-&#x20;  ↓
+---
 
-Retrieve Relevant Chunks
+## 🛠️ Tech Stack
 
-&#x20;  ↓
+* **Language:** Python
+* **Framework:** LangChain
+* **Vector Database:** FAISS
+* **Embeddings:** HuggingFace
+* **Model:** Transformers (local inference)
 
-Context + Question
+---
 
-&#x20;  ↓
+## 📂 Project Structure
 
-Local NLP Model
+```
+docmind.ai/
+│
+├── app/
+│   └── rag_pipeline.py
+│
+├── data/
+│   └── docs/
+│
+├── test_rag.py
+├── interactive_chat.py
+├── .gitignore
+└── README.md
+```
 
-&#x20;  ↓
+---
 
-Final Answer
+## ▶️ How to Run
 
+```bash
+git clone https://github.com/dharshinib20012003-ops/docmind.ai
+cd docmind.ai
 
+pip install -r requirements.txt
+python test_rag.py
+```
 
-Implementation Steps
+---
 
+## 💡 Example
 
+**Input:**
 
-1\. Document Ingestion (PyPDFLoader)
+```
+What is the total amount?
+```
 
-2\. Text Chunking (RecursiveCharacterTextSplitter)
+**Output:**
 
-3\. Embeddings (HuggingFaceEmbeddings)
+```
+50500 INR
+```
 
-4\. Storage (FAISS)
+---
 
-5\. Retrieval (Similarity Search)
+## 🚧 Limitations
 
-6\. Answer Generation (Transformers model)
+* Uses lightweight local model → limited reasoning ability
+* Works best on structured/simple PDFs
+* No UI (CLI-based interaction only)
 
+---
 
+## 🚀 Future Improvements
 
-Data Flow
+* Add FastAPI backend for API access
+* Build UI using Streamlit/React
+* Support multiple document uploads
+* Integrate stronger LLMs (Llama / Mistral)
+* Improve answer accuracy with better prompting
 
+---
 
+## ⭐ Key Highlights
 
-PDF → Chunking → Embeddings → FAISS
+* Built complete RAG pipeline from scratch
+* Implemented semantic search using FAISS
+* Integrated document processing with NLP
+* Demonstrates real-world data engineering + AI workflow
 
-Query → Embedding → Search → Context → Model → Answer
+---
 
+## 📌 Author
 
-
-Tech Stack
-
-Python, LangChain, FAISS, HuggingFace Transformers
-
-
-
-Run
-
-python test\_rag.py
-
-
-
-Example
-
-Q: What is total amount?
-
-A: 50500 INR
-
+Dharshini Arvind Kumar
