@@ -127,6 +127,8 @@ git clone https://github.com/dharshinib20012003-ops/docmind.ai
 cd docmind.ai
 git checkout documind.ai
 create .env file and then paste your OPENAI_API_KEY
+conda activate documind
+python -m pip install -U pip setuptools wheel
 pip install -r requirements.txt
 python ./test_rag.py
 ```
