@@ -125,10 +125,37 @@ docmind.ai/
 ```bash
 git clone https://github.com/dharshinib20012003-ops/docmind.ai
 cd docmind.ai
-
+git checkout documind.ai
+create .env file and then paste your OPENAI_API_KEY
 pip install -r requirements.txt
-python test_rag.py
+python ./test_rag.py
 ```
+
+---
+
+# Create OpenAI API Key
+
+To use OpenAI’s API for tasks like text generation, image analysis, or building AI agents, you first need to create an API key. This key authenticates your requests and links them to your account.
+
+Step 1: Sign In or Create an Account
+
+Go to platform.openai.com.
+
+Log in with your existing OpenAI account or sign up using your email, Google, or Microsoft account.
+
+Step 2: Navigate to API Keys
+
+Click your profile icon in the top-right corner.
+
+Select "View API Keys" from the dropdown menu.
+
+Step 3: Generate a New Key
+
+Click "Create new secret key".
+
+Optionally, give it a name for identification.
+
+Copy the generated key immediately — you won’t be able to view it again once the dialog closes
 
 ---
 
